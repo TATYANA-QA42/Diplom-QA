@@ -15,7 +15,7 @@ public class APIHelper {
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
             .build();
-public static int buyPayCardAPI(DataHelper.CardData data) {
+public static int buyPayCardAPI(DataHelper.Card data) {
     return given()
             .spec(peqSpec)
             .body(data)
@@ -23,7 +23,7 @@ public static int buyPayCardAPI(DataHelper.CardData data) {
             .post("/api/v1/pay")
             .getStatusCode();
 }
-public static  int buyCreditCardAPI(DataHelper.CardData data) {
+public static  int buyCreditCardAPI(DataHelper.Card data) {
     return given()
             .spec(peqSpec)
             .body(data)
