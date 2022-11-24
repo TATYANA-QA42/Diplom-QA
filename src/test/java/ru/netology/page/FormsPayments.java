@@ -17,22 +17,27 @@ public class FormsPayments {
 
     private final SelenideElement continueButton = $x("//*[@id='root']/div/form/fieldset/div[4]/button");
     private final SelenideElement titleCard = $x("//*[@id='root']/div/h3");
+
+
     private final SelenideElement cardNumber = $("[placeholder='0000 0000 0000 0000']");
     private final SelenideElement cardMonth = $("[placeholder='08']");
     private final SelenideElement cardYear = $("[placeholder='22']");
-    private final SelenideElement cardHolder =$x("//*[@id='root']/div/form/fieldset/div[3]/span/span[1]/span/span/span[2]/input");
+    private final SelenideElement cardHolder = $x("//*[@id='root']/div/form/fieldset/div[3]/span/span[1]/span/span/span[2]/input");
     private final SelenideElement cardCVC = $("[placeholder='999']");
+
 
     private final SelenideElement notificationTitleAccept = $(".notification_status_ok");
     private final SelenideElement notificationContentAccept = $(".notification_status_ok");
 
     private final SelenideElement notificationTitleDenial = $(".notification_status_error");
-    private final SelenideElement notificationContentDenial = $(".notifikation_status_error");
-    private final SelenideElement numberFieldError = $x("//*[@id=root]/div/form/fieldset/div[1]/span/span/span[3]");
-    private final SelenideElement monthFieldError = $x("//*[@id=root]/div/form/fieldset/div[2]/span/span[1]/span/span/span[3]");
-    private final SelenideElement yearFieldError = $x("//*[@id=root]/div/form/fieldset/div[2]/span/span[2]/span/span/span[3]");
-    private final SelenideElement holderFieldError = $x("//*[@id=root]/div/form/fieldset/div[3]/span/span[1]/span/span/span[3]");
-    private final SelenideElement CVCFieldError = $x("//*[@id=root]/div/form/fieldset/div[3]/span/span[2]/span/span/span[3]");
+    private final SelenideElement notificationContentDenial = $(".notification_status_error");
+
+
+    private final SelenideElement numberFieldError = $x("//*[@id='root']/div/form/fieldset/div[1]/span/span/span[3]");
+    private final SelenideElement monthFieldError = $x("//*[@id='root']/div/form/fieldset/div[2]/span/span[1]/span/span/span[3]");
+    private final SelenideElement yearFieldError = $x("//*[@id='root']/div/form/fieldset/div[2]/span/span[2]/span/span/span[3]");
+    private final SelenideElement holderFieldError = $x("//*[@id='root']/div/form/fieldset/div[3]/span/span[1]/span/span/span[3]");
+    private final SelenideElement CVCFieldError = $x("//*[@id=\"root\"]/div/form/fieldset/div[3]/span/span[2]/span/span/span[3]");
 
     public void completePayFrom(String number, String month, String year, String holder, String cvc) {
         homePage.clickPayButton();
