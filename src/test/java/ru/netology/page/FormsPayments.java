@@ -31,8 +31,6 @@ public class FormsPayments {
 
     private final SelenideElement notificationTitleDenial = $(".notification_status_error");
     private final SelenideElement notificationContentDenial = $(".notification_status_error");
-
-
     private final SelenideElement numberFieldError = $x("//*[@id='root']/div/form/fieldset/div[1]/span/span/span[3]");
     private final SelenideElement monthFieldError = $x("//*[@id='root']/div/form/fieldset/div[2]/span/span[1]/span/span/span[3]");
     private final SelenideElement yearFieldError = $x("//*[@id='root']/div/form/fieldset/div[2]/span/span[2]/span/span/span[3]");
