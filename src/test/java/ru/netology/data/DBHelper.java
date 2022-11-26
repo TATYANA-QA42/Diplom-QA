@@ -1,108 +1,61 @@
 package ru.netology.data;
 
-import lombok.SneakyThrows;
 import lombok.val;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.DriverManager;
-
+import java.sql.SQLException;
 
 public class DBHelper {
-    @SneakyThrows
-    public static void clearDB() {
 
-        val deleteOrder = "DELETE FROM order_entity;";
-        val deletePayment = "DELETE FROM payment_entity;";
-        val deleteCredit = "DELETE FROM credit_request_entity;";
-        val runner = new QueryRunner();
+    private static final String url = System.getProperty("dbUrl");
+    private static final String user = "app";
+    private static final String password = "pass";
 
-        try (
-                val conn = DriverManager.getConnection(System.getProperty("dbUrl"), System.getProperty("dbUser"), System.getProperty("dbPass")
-                );
+    public static String getScalarFromTable(String column, String tableName) throws SQLException {
+        QueryRunner runner = new QueryRunner();
+        try (val conn = DriverManager.getConnection(url, user, password)
         ) {
-            runner.update(conn, deleteOrder);
-            runner.update(conn, deletePayment);
-            runner.update(conn, deleteCredit);
-
+            val info = "SELECT " + column + " FROM " + tableName + " ORDER BY created DESC LIMIT 1;";
+            val scalar = runner.query(conn, info, new ScalarHandler<String>());
+            return scalar;
         }
     }
 
-    @SneakyThrows
-    public static String getCreditStatusDB() {
-        val status = "SELECT status FROM credit_request_entity;";
-        val runner = new QueryRunner();
-        String creditStatus;
-
-        try (
-                val conn = DriverManager.getConnection(System.getProperty("dbUrl"), System.getProperty("dbUser"), System.getProperty("dbPass")
-                );
-        ) {
-            creditStatus = runner.query(conn, status, new ScalarHandler<>());
-        }
-
-        return creditStatus;
+    public static String getStatusFromPaymentEntity() throws SQLException {
+        return getScalarFromTable("status", "payment_entity");
     }
 
-    @SneakyThrows
-    public static String getPaymentStatusDB() {
-        val sql = "SELECT status FROM payment_entity;";
-        val runner = new QueryRunner();
-        String payStatus;
-
-        try (
-                val conn = DriverManager.getConnection(System.getProperty("dbUrl"), System.getProperty("dbUser"), System.getProperty("dbPass")
-                );
-        ) {
-            payStatus = runner.query(conn, sql, new ScalarHandler<>());
-        }
-
-        return payStatus;
+    public static String getTransactionIdFromPaymentEntity() throws SQLException {
+        return getScalarFromTable("transaction_id", "payment_entity");
     }
 
-    @SneakyThrows
-    public static long getPaymentCount() {
-        val sql = "SELECT COUNT(id) as count FROM payment_entity;";
-        val runner = new QueryRunner();
-        long payCount;
-
-        try (
-                val conn = DriverManager.getConnection(System.getProperty("dbUrl"), System.getProperty("dbUser"), System.getProperty("dbPass")
-                );
-        ) {
-            payCount = runner.query(conn, sql, new ScalarHandler<>());
-        }
-        return payCount;
+    public static String getPaymentIdFromOrderEntity() throws SQLException {
+        return getScalarFromTable("payment_id", "order_entity");
     }
 
-    @SneakyThrows
-    public static long getCreditCount() {
-        val sql = "SELECT COUNT(id) as count FROM credit_request_entity;";
-        val runner = new QueryRunner();
-        long creditCount;
-
-        try (
-                val conn = DriverManager.getConnection(System.getProperty("dbUrl"), System.getProperty("dbUser"), System.getProperty("dbPass")
-                );
-        ) {
-            creditCount = runner.query(conn, sql, new ScalarHandler<>());
-        }
-        return creditCount;
+    public static String getCreditIdFromOrderEntity() throws SQLException {
+        return getScalarFromTable("credit_id", "order_entity");
     }
 
-    @SneakyThrows
-    public static long getOrderCount() {
-        val sql = "SELECT COUNT(id) as count FROM order_entity;";
-        val runner = new QueryRunner();
-        long orderCount;
+    public static String getStatusFromCreditRequestEntity() throws SQLException {
+        return getScalarFromTable("status", "credit_request_entity");
+    }
 
-        try (
-                val conn = DriverManager.getConnection(System.getProperty("dbUrl"), System.getProperty("dbUser"), System.getProperty("dbPass")
-                );
+    public static String getBankIdFromCreditRequestEntity() throws SQLException {
+        return getScalarFromTable("bank_id", "credit_request_entity");
+    }
+
+    public static void clearDBTables() {
+        val runner = new QueryRunner();
+        try (val conn = DriverManager.getConnection(url, user, password)
         ) {
-            orderCount = runner.query(conn, sql, new ScalarHandler<>());
+            runner.update(conn, "DELETE  FROM credit_request_entity;");
+            runner.update(conn, "DELETE  FROM payment_entity;");
+            runner.update(conn, "DELETE  FROM order_entity;");
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
-        return orderCount;
     }
 }
-
