@@ -47,6 +47,16 @@ public class DBHelper {
         return getScalarFromTable("bank_id", "credit_request_entity");
     }
 
+//    public static void insertInDB(DataHelper.CardInfo cardNumber) {
+//        val runner = new QueryRunner();
+//        try (val conn = DriverManager.getConnection(url, user, password)
+//        ) {
+//            runner.update(conn, "INSERT  into  credit_request_entity values ();");
+//            runner.update(conn, "INSERT  into payment_entity values ();");
+//            runner.update(conn, "INSERT  into order_entity values ();");
+//        } catch (SQLException e) {
+//            System.out.println(e.toString());
+
     public static void clearDBTables() {
         val runner = new QueryRunner();
         try (val conn = DriverManager.getConnection(url, user, password)

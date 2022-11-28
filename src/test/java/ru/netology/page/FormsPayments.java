@@ -57,11 +57,11 @@ public class FormsPayments {
     }
 
     public void close() {
-        checkDeclinedMessageClose.waitUntil(visible, 15000).click();
+        checkDeclinedMessageClose.waitUntil(visible, 20000).click();
     }
 
     public void checkApprovedMessage() {
-        checkApprovedMessage.waitUntil(visible, 15000);
+        checkApprovedMessage.waitUntil(visible, 20000);
     }
 
     public void checkApprovedMessageNotVisible() {
@@ -69,7 +69,7 @@ public class FormsPayments {
     }
 
     public void checkDeclinedMessage() {
-        checkDeclinedMessage.waitUntil(visible, 15000);
+        checkDeclinedMessage.waitUntil(visible, 20000);
     }
 
     public void checkErrorMessageCard() {
