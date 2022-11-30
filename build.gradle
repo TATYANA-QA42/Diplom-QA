@@ -38,5 +38,4 @@ test {
     systemProperty 'dbUrl', System.getProperty('dbUrl', 'jdbc:mysql://localhost:3306/base_mysql')
     systemProperty 'dbUser', System.getProperty('dbUser', 'app')
     systemProperty 'dbPass', System.getProperty('dbPass', 'pass')
-    //systemProperty "app.url", System.getProperty("app.url", "http://localhost:8080")
 }

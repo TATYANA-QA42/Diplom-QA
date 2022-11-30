@@ -1,4 +1,5 @@
 package ru.netology.tests;
+
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
@@ -44,7 +45,7 @@ class TestPay {
 
     @Test
     void shouldPayApprovedCardNamedInRus() throws SQLException {
-        val cardNumber  = DataHelper.getCardInfo(cardAPPROVED, DataHelper.getMoth(),
+        val cardNumber = DataHelper.getCardInfo(cardAPPROVED, DataHelper.getMoth(),
                 DataHelper.getYear(1), DataHelper.getOwnerInRus(), DataHelper.getValidCvc());
         System.out.println(cardNumber);
         cardPayment.debitPurchase();
@@ -68,7 +69,7 @@ class TestPay {
     }
 
     @Test
-    void shouldPayDeclinedCard() throws SQLException {
+    void shouldPayDeclinedCard() throws SQLException { //ошибочный сообщение не то должно быть отклонено
         val cardNumber = DataHelper.getCardInfo(cardDECLINED, DataHelper.getMoth(),
                 DataHelper.getYear(1), DataHelper.getOwnerInEng(), DataHelper.getValidCvc());
         cardPayment.debitPurchase();
@@ -89,7 +90,7 @@ class TestPay {
 
     @Test
     void shouldPayApprovedWithoutMonth() throws SQLException {
-        var cardNumber  = DataHelper.getCardInfo(cardAPPROVED, "",
+        var cardNumber = DataHelper.getCardInfo(cardAPPROVED, "",
                 DataHelper.getYear(1), DataHelper.getOwnerInEng(), DataHelper.getValidCvc());
         cardPayment.debitPurchase();
         cardPayment.pageFieldInfo(cardNumber);
@@ -128,16 +129,16 @@ class TestPay {
     }
 
     @Test
-    void shouldPayApprovedOwnerLength50() {
+    void shouldPayApprovedOwnerLength50() { // ошибочный формат не тот Баг
         val cardNumber = DataHelper.getCardInfo(cardAPPROVED, DataHelper.getMoth(),
                 DataHelper.getYear(1), DataHelper.getOwnerLenght(), DataHelper.getValidCvc());
         cardPayment.debitPurchase();
         cardPayment.pageFieldInfo(cardNumber);
-        assertEquals(DataHelper.getOwnerLenght().substring(50), cardPayment.checkLengthOwner());
+        assertEquals(DataHelper.getOwnerLenght(), cardPayment.checkLengthOwner());
     }
 
     @Test
-    void shouldPayApprovedOwnerSimbol() {
+    void shouldPayApprovedOwnerSimbol() { // ошибочный
         val cardNumber = DataHelper.getCardInfo(cardAPPROVED, DataHelper.getMoth(),
                 DataHelper.getYear(1), "_________________________________", DataHelper.getValidCvc());
         cardPayment.debitPurchase();
@@ -146,7 +147,7 @@ class TestPay {
     }
 
     @Test
-    void shouldPayApprovedCardNotFull() throws SQLException {
+    void shouldPayApprovedCardNotFull() throws SQLException { // ошибочный доработать Assert
         val cardNumber = DataHelper.getCardInfo("444444444444", DataHelper.getMoth(),
                 DataHelper.getYear(1), DataHelper.getOwnerInEng(), DataHelper.getValidCvc());
         cardPayment.debitPurchase();
@@ -176,7 +177,7 @@ class TestPay {
     }
 
     @Test
-    void shouldPayNotApprovedCardAfterClose() {
+    void shouldPayNotApprovedCardAfterClose() { // ошибочный
         val cardNumber = DataHelper.getCardInfo("4444444444446547", DataHelper.getMoth(),
                 DataHelper.getYear(1), DataHelper.getOwnerInRus(), DataHelper.getValidCvc());
         cardPayment.debitPurchase();
@@ -186,7 +187,7 @@ class TestPay {
     }
 
     @Test
-    void shouldCreditPayApprovedCardNamedInRus() throws SQLException {
+    void shouldCreditPayApprovedCardNamedInRus() throws SQLException { // ошибочный
         val cardNumber = DataHelper.getCardInfo(cardAPPROVED, DataHelper.getMoth(),
                 DataHelper.getYear(1), DataHelper.getOwnerInRus(), DataHelper.getValidCvc());
         cardPayment.creditPurchase();
@@ -197,7 +198,7 @@ class TestPay {
     }
 
     @Test
-    void shouldCreditInfoForPayDeclinedCard() throws SQLException {
+    void shouldCreditInfoForPayDeclinedCard() throws SQLException { // ошибочный разобраться со статусом в БД
         val cardNumber = DataHelper.getCardInfo(cardDECLINED, DataHelper.getMoth(),
                 DataHelper.getYear(1), DataHelper.getOwnerInRus(), DataHelper.getValidCvc());
         cardPayment.creditPurchase();
@@ -207,7 +208,7 @@ class TestPay {
     }
 
     @Test
-    void shouldCreditInfoForPayInvalidCVC() throws SQLException {
+    void shouldCreditInfoForPayInvalidCVC() throws SQLException { // ошибочный
         val cardNumber = DataHelper.getCardInfo(cardAPPROVED, DataHelper.getMoth(),
                 DataHelper.getYear(1), DataHelper.getOwnerInEng(), "000");
         cardPayment.creditPurchase();
