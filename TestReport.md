@@ -27,7 +27,7 @@
 ![img.png](img.png)
 По итогам тестирования обнаружено 7 багов.
 
-По всем багам заведены ![Issues](https://github.com/TATYANA-QA42/Diplom-QA/issues)
+По всем багам заведены [Issues](https://github.com/TATYANA-QA42/Diplom-QA/issues)
 
 Выявлены следующие ошибки:
 

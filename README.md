@@ -36,7 +36,7 @@
 - ./gradlew allureserve
 
 ## Ссылки на документацию:
-1) ![Дипломное задание](https://github.com/netology-code/qa-diploma/blob/master/README.md) 
-2) ![План автоматизации](https://github.com/TATYANA-QA42/Diplom-QA/blob/main/Plan.md)  
-3) Отчет по итогам тестрования
-4) Отчет о проведенной автоматизации
+1) [Дипломное задание](https://github.com/netology-code/qa-diploma/blob/master/README.md) 
+2) [План автоматизации](https://github.com/TATYANA-QA42/Diplom-QA/blob/main/Plan.md)  
+3) [Отчет по итогам тестрования](https://github.com/TATYANA-QA42/Diplom-QA/blob/main/TestReport.md)  
+4) [Отчет о проведенной автоматизации](https://github.com/TATYANA-QA42/Diplom-QA/blob/main/Summary.md)  
