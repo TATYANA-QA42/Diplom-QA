@@ -1,5 +1,6 @@
 package ru.netology.data;
 
+import lombok.SneakyThrows;
 import lombok.val;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
@@ -10,9 +11,10 @@ import java.sql.SQLException;
 public class DBHelper {
 
     private static final String url = System.getProperty("dbUrl");
-    private static final String user = "app";
-    private static final String password = "pass";
+    private static final String user = System.getProperty("dbUser");
+    private static final String password = System.getProperty("dbPass");
 
+@SneakyThrows
     public static String getScalarFromTable(String column, String tableName) throws SQLException {
         QueryRunner runner = new QueryRunner();
         try (val conn = DriverManager.getConnection(url, user, password)
@@ -46,7 +48,7 @@ public class DBHelper {
     public static String getBankIdFromCreditRequestEntity() throws SQLException {
         return getScalarFromTable("bank_id", "credit_request_entity");
     }
-
+@SneakyThrows
     public static void clearDBTables() {
         val runner = new QueryRunner();
         try (val conn = DriverManager.getConnection(url, user, password)
