@@ -1,3 +1,4 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/hk4uumocih61orv7?svg=true)](https://ci.appveyor.com/project/TATYANA-QA42/diplom-qa)
 # Дипломный проект профессии «Тестировщик ПО»
 
 ## О проекте
