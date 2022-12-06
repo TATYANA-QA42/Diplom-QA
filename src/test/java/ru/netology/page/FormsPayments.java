@@ -7,8 +7,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class FormsPayments {
-    private SelenideElement buyTour = $$(".button").find(exactText("Купить"));
-    private SelenideElement buyTourInCredit = $$(".button").find(exactText("Купить в кредит"));
+
     private SelenideElement inputCardNumber = $("input[type=\"text\"][placeholder=\"0000 0000 0000 0000\"]");
     private SelenideElement inputMonth = $("input[type=\"text\"][placeholder=\"08\"]");
     private SelenideElement inputYear = $("input[type=\"text\"][placeholder=\"22\"]");
@@ -37,14 +36,6 @@ public class FormsPayments {
     private SelenideElement checkErrorMessageCVC = $$(".input__top").find(exactText("CVC/CVV")).parent().
             $$(".input__sub").find(exactText("Неверный формат"));
 
-
-    public void debitPurchase() {
-        buyTour.click();
-    }
-
-    public void creditPurchase() {
-        buyTourInCredit.click();
-    }
 
     public FormsPayments pageFieldInfo(DataHelper.CardInfo info) {
         inputCardNumber.setValue(info.getCardNumber());
